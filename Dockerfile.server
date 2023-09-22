@@ -1,0 +1,21 @@
+# Copyright 2021 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: Apache-2.0
+
+FROM amazonlinux:2
+
+RUN yum install gcc python3 python3-devel net-tools -y
+
+WORKDIR /enclave
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN pip3 install -r /tmp/requirements.txt
+
+COPY enclave/enclave_service.py ./
+COPY enclave/blockchain_service.py ./
+COPY enclave/traffic-forwarder.py ./
+COPY run.sh ./
+
+RUN chmod +x run.sh
+
+CMD ["/enclave/run.sh"]
