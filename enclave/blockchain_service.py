@@ -6,7 +6,7 @@ INFURA_URL_KEY = 'https://sepolia.infura.io/v3/YOUR_KEY'
 ENCRYPTED_KEY = b""
 KEY_NAME = ''
 
-class BlockChainService:
+class BlockchainService:
     def __init__(self):
         web3 = Web3(Web3.HTTPProvider(INFURA_URL_KEY))
         self.web3 = web3
@@ -14,16 +14,16 @@ class BlockChainService:
     def getWeb3(self, web3):
         return web3
     
-    def signTransaction(self, dataCredentialsAndTransaction):
-        data = json.loads(dataCredentialsAndTransaction)
+    def sign_transaction(self, data_credentials_and_transaction):
+        data = json.loads(data_credentials_and_transaction)
         credentials = data['credentials']
         transaction = data['transaction']
-        decrypted = self.decryptKey(credentials)
-        privateKey = (decrypted['Plaintext']).decode('utf-8')
+        decrypted = self.decrypt_key(credentials)
+        private_key = (decrypted['Plaintext']).decode('utf-8')
 
-        return self.web3.eth.account.sign_transaction(transaction, privateKey)
+        return self.web3.eth.account.sign_transaction(transaction, private_key)
 
-    def decryptKey(self,credentials):
+    def decrypt_key(self,credentials):
         client = boto3.client(
             'kms',
             region_name = 'us-east-1',

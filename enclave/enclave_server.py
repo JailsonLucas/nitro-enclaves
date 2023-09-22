@@ -3,13 +3,13 @@ import socket
 import sys
 import os
 
-from blockChainService import BlockChainService
+from enclave.blockchain_service import BlockchainService
 
 ENCLAVE_PORT = 5000
 
 class EnclaveServer:
     def __init__(self, conn_backlog=128):
-        self.blockChainService = BlockChainService()
+        self.block_chain_service = BlockchainService()
         self.conn_backlog = conn_backlog
 
     def bind(self):
@@ -32,7 +32,7 @@ class EnclaveServer:
 
                 data = from_client.recv(4096).decode()
 
-                signed_transaction = self.blockChainService.signTransaction(data)
+                signed_transaction = self.block_chain_service.sign_transaction(data)
                 byte_data = bytes(signed_transaction.rawTransaction)
 
                 self.send_data(from_client, byte_data)
@@ -55,8 +55,6 @@ def server_handler():
     server = EnclaveServer()
     server.bind()
     server.recv_data()
-    
-
 
 def main():
     server_handler()
