@@ -5,7 +5,7 @@ import requests
 from hexbytes import HexBytes
 import time
 
-from client.blockchain_client_service import BlockchainClientService
+from blockchain_client_service import BlockchainClientService
 
 ENCLAVE_PORT = 5000
 ENCLAVE_CID = 16
