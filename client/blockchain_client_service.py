@@ -1,10 +1,16 @@
+import os
+import json
 from web3 import Web3
 from contract_abi import ABI
-import json
-INFURA_URL_KEY = "https://sepolia.infura.io/v3/YOUR_KEY"
-SIGNER_ADDRESS = ""
-CLIENT_ADDRESS = ""
-ERC20_CONTRACT_ADDRESS = ""
+from dotenv import load_dotenv
+
+load_dotenv()
+
+INFURA_KEY = os.getenv("INFURA_KEY")
+INFURA_URL_KEY = "https://sepolia.infura.io/v3/"+INFURA_KEY
+SIGNER_ADDRESS = os.getenv("SIGNER_ADDRESS")
+CLIENT_ADDRESS = os.getenv("CLIENT_ADDRESS")
+ERC20_CONTRACT_ADDRESS = os.getenv("ERC20_CONTRACT_ADDRESS")
 
 class BlockchainClientService:
     def __init__(self):
