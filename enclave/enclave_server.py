@@ -3,7 +3,7 @@ import socket
 import sys
 import os
 
-from enclave.blockchain_service import BlockchainService
+from blockchain_service import BlockchainService
 
 ENCLAVE_PORT = 5000
 
