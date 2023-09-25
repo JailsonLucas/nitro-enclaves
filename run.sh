@@ -8,4 +8,4 @@ echo "127.0.0.1   kms.us-east-1.amazonaws.com" >> /etc/hosts
 
 # Run traffic forwarder in background and start the server
 nohup python3 /enclave/traffic_forwarder.py 443 3 8000 &
-python3 /enclave/enclave_service.py
+python3 /enclave/enclave_server.py
