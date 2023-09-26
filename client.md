@@ -26,16 +26,11 @@ sudo make install
 cd client
 pip3.11 install -r requirements.txt
 
-sudo yum groupinstall "Development Tools"
+## Passo 6: Habilitar o vsock-proxy
 
-sudo yum install libffi-devel bzip2-devel
+Rodando um comando para habilitar uma conexão temporaria
+vsock-proxy 8000 kms.us-east-1.amazonaws.com 443
 
-sudo wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz
-sudo tar xzf Python-3.11.1.tgz
-cd Python-3.11.1
-
-sudo ./configure --enable-optimizations
-sudo make install
-
-cd client
-pip3.11 install -r requirements.txt
+Ou criar um serviço para a conecção
+chmod +x ./build-vsock-proxy.sh
+sudo ./build-vsock-proxy.sh
